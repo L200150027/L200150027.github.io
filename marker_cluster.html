@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- disini lokasi style atau script-->
+  <style>
+  	 #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+ </style>
+</head>
+<body align= 'center'>
+    <p><b>Data Terminal DKI Jakarta</b></p>
+  <div id="map"></div>
+
+  	<script> 
+  		function initMap() {
+  			var map = new google.maps.Map(  			
+  				document.getElementById('map'), 
+  				{
+          			zoom: 5,
+                center: {lat: -6.2307408, lng: 106.7508241}
+        		}
+        	);
+        //data untuk melabeli marker, 1 marker 1 lhuruf
+         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+         //proses membuat markers diambil dari data locations + labels
+         var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+          });
+        });
+         //meletakkan marker dalam peta menggunakan MarkerCluster
+          var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      }
+      var locations = [
+        {lat: -6.24345, lng: 106.80157},
+        {lat: -6.2619, lng: 106.86561}, 
+        {lat: -6.16657, lng: 106.79045},
+        {lat: -6.1331, lng: 106.81122},
+        {lat: -6.15452, lng: 106.70577},
+        {lat: -6.2249, lng: 106.86658},
+        {lat: -6.30948, lng: 106.88224},
+        {lat: -6.22152, lng: 106.93228},
+        {lat: -6.2886, lng: 106.84749},
+        {lat: -6.20892, lng: 106.84749},
+        {lat: -6.10902, lng: 106.77339},
+        {lat: -6.28321, lng: 106.84377},
+        {lat: -6.29115, lng: 106.88593},
+        {lat: -6.18387, lng: 106.9081},
+        {lat: -6.30546, lng: 106.82034},
+        {lat: -6.19794, lng: 106.8912},
+        {lat: -6.17364, lng: 106.84198},
+        {lat: -6.10961, lng: 106.88137},
+        {lat: -6.18909, lng: 106.95914},
+        {lat: -6.15942, lng: 106.72594},
+        {lat: -6.107635, lng: 106.922409},
+        {lat: -6.13775, lng: 106.81396}
+      ]
+  	</script>
+
+    <!-- Mengambil Librari MarkerCluster dari google   -->
+    <script src="markerclusterer.js"></script>    
+
+
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB095ILVaZKDkSzBhBwzy7eqxLhKYqctQg&callback=initMap">
+    </script>
+
+</body>
+</html>
